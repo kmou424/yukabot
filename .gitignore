@@ -1,0 +1,5 @@
+.env
+
+data.json
+
+templates/*_templ.go

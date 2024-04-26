@@ -1,0 +1,44 @@
+package templates
+
+import (
+	"github.com/kmou424/dingtalkbot"
+)
+
+templ ID(msg dingtalkbot.ChatMessage) {
+	@prefix()
+	<br/>
+	老师，已经帮您整理好ID信息了:
+	<br/>
+	我的ID: `{ msg.ChatbotUserId }`
+	<br/>
+	我的组织ID: `{ msg.ChatbotCorpId }`
+	<br/>
+	老师的ID: `{ msg.SenderId }`
+	<br/>
+	老师的组织ID: `{ msg.SenderCorpId }`
+	<br/>
+	群ID: `{ msg.ConversationId }`
+}
+
+templ help() {
+	/help    显示此帮助信息
+	<br/>
+	/id      查看能够获取的所有ID
+	<br/>
+	/channel Channel管理
+}
+
+templ Help() {
+	<br/>
+	老师，这些是目前可以使用的命令列表:
+	<br/>
+	@help()
+}
+
+templ Unknown() {
+	老师又在说奇奇怪怪的话了，是不是又忘记命令了？
+	<br/>
+	{ randomComplaint() }
+	<br/>
+	@help()
+}

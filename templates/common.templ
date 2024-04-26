@@ -1,0 +1,23 @@
+package templates
+
+import "crypto/rand"
+import "math/big"
+import "math"
+
+templ prefix() {
+}
+
+var randomComplaints = []string{
+	"诶...多亏了我什么的...真是的，老师就是因为每次都这样才对这些事情掉以轻心的吧！",
+	"也就只有我会像这样帮您什么的了。下次我再也不会帮忙的了！",
+	"唉，那我再帮您一次吧，下次可不许再这样啦！",
+}
+
+func randomInt() int {
+	r, _ := rand.Int(rand.Reader, big.NewInt(math.MaxInt))
+	return int(r.Int64())
+}
+
+func randomComplaint() string {
+	return randomComplaints[randomInt()%len(randomComplaints)]
+}

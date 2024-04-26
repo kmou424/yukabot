@@ -1,0 +1,55 @@
+version: 3
+
+tasks:
+  default:
+    dir: ../
+    aliases:
+      - build
+    deps:
+      - generate
+    cmds:
+      - go build -trimpath -ldflags "-s -w" -o ./build/yukabot ./cmd/yukabot
+      - defer: { task: build-postrun }
+  
+  generate:
+    cmds:
+      - go install github.com/a-h/templ/cmd/templ@latest
+      - templ generate -path ../templates
+
+  build-postrun:
+    internal: true
+    deps:
+      - build-postrun-windows
+
+  build-postrun-windows:
+    internal: true
+    platforms:
+      - windows
+    cmds:
+      - mv yukabot yukabot.exe
+
+  clean:
+    cmds:
+      - task: clean-windows
+      - task: clean-common
+  clean-windows:
+    internal: true
+    platforms:
+      - windows
+    cmds:
+      - rm yukabot.exe
+      - rm ../templates/*_templ.go
+  clean-common:
+    internal: true
+    platforms:
+      - linux
+      - darwin
+    cmds:
+      - rm -f yukabot
+      - rm -f ../templates/*_templ.go
+
+  # run dev
+  run:
+    dir: ../
+    cmds:
+      - go run ./cmd/yukabot

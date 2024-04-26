@@ -1,0 +1,20 @@
+package templates
+
+import "github.com/kmou424/yukabot/app/model"
+import "time"
+
+var LevelsPrefix = []string{
+	"老师，有新的工作需要您处理~",
+	"老师，发生了一些异常情况，请您注意",
+	"老师，发生了严重的异常，请您立即处理！",
+}
+
+templ TextAlarm(level model.AlarmLevel, content string) {
+	{ LevelsPrefix[level] }
+	<br/>
+	<br/>
+	{ content }
+	<br/>
+	<br/>
+	时间: { time.Now().Format(time.DateTime) }
+}

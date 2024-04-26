@@ -1,0 +1,43 @@
+package templates
+
+templ ChannelHelp() {
+	真是的，老师，您怎么又忘记命令了，这次还是我来帮您吧：
+	<br/>
+	save   分配本群的ChannelID
+	<br/>
+	view   查看本群的ChannelID
+	<br/>
+	delete 删除本群的ChannelID
+}
+
+templ ChannelSave(id string) {
+	if id == "" {
+		老师！这个群聊已经分配过ChannelID了，老师该不会又忘了吧？！
+		<br/>
+		{ randomComplaint() }
+	} else {
+		我已经帮老师为本群分配了ChannelID: { id }。老师可以在调用API时带上ChannelID将信息推送到本群！
+	}
+}
+
+templ ChannelView(id string) {
+	if id == "" {
+		笨蛋老师，这个群还没有分配过ChannelID呢，要先使用"save"命令分配一个！
+	} else {
+		老师，我帮您找到了本群的ChannelID: { id }！
+		<br/>
+		{ randomComplaint() }
+	}
+}
+
+templ ChannelDelete(result bool) {
+	if result {
+		老师，我帮您删除了本群的ChannelID！
+	} else {
+		老师！这个群聊根本就没有分配过ChannelId！您能不能对工作上心点？！
+		<br/>
+		{ randomComplaint() }
+		<br/>
+		要先使用"save"命令分配一个才可以删除！
+	}
+}
