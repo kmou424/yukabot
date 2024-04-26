@@ -9,7 +9,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/gookit/goutil v0.6.15
 	github.com/gookit/ini/v2 v2.2.3
-	github.com/kmou424/dingtalkbot v0.0.0-20240424093753-2faf22050289
+	github.com/kmou424/dingtalkbot v0.0.0-20240426162738-f141d40846c8
 )
 
 require (
